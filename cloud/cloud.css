@@ -1,0 +1,97 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Cloud container */
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0b0b0b;
+    overflow: hidden;
+}
+
+/* Cloud effect styling */
+.container .cloud {
+    position: relative;
+    width: 360px;
+    z-index: 100;
+    filter: drop-shadow(0 0 35px var(--clr));
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.container .cloud h2 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 2em;
+    z-index: 1000;
+    font-weight: 400;
+    padding: 0 10px;
+    border-radius: 10px;
+    color: aliceblue;
+}
+
+.container .cloud h2::before {
+    content: '';
+    position: absolute;
+    top: -115px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 1000px;
+    width: 120%;
+    height: 100px;
+    background: #7fdb29;
+}
+
+/* Animation for color change */
+@keyframes animateColor {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+}
+
+/* Raindrop styling */
+.drop {
+    position: absolute;
+    top: -20px;
+    color: #00f;
+    animation: fall linear infinite;
+    opacity: 0;
+}
+
+.drop:nth-child(even) {
+    color: #0f0;
+}
+
+.drop:nth-child(odd) {
+    color: #f00;
+}
+
+.drop {
+    animation-duration: 2s;
+}
+
+/* Cloud glow animation */
+.container .cloud {
+    animation: animateColor 10s linear infinite;
+}
