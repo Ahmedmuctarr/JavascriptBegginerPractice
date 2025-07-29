@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>music player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link id="favicon" rel="icon" type="icon" href="img/img2.jpg">
+</head>
+
+<body>
+
+  <div class="main">
+  	<p id="logo"><i class="fa fa-music"></i>Ahmed Music Player</p>
+    
+        <!-- show_song_number -->
+        <div class="show_song_no">
+          <p id="present">1</p>
+          <p>/</p>
+          <p id="total">5</p>
+        </div>
+
+
+    <!--- left part --->
+     <div class="left">
+
+      <!--- song img --->
+      <img id="track_image">
+         <div class="volume">
+            <p id="volume_show">90</p>
+            <i class="fa fa-volume-up" aria-hidden="true" id="volume_icon"></i>
+            <input type="range" min="0" max="100" value="90" id="volume">  
+         </div>
+
+     </div>
+ 
+     <!--- right part --->
+  	 <div class="right">
+       <!--- song title & artist name --->
+       <div class="song_detail">
+           <p id="title">title.mp3</p>
+           <p id="artist">Artist name</p>
+       </div>
+
+      <!--- middle part --->
+  	 	<div class="middle">
+  	       <button  id="pre"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
+      	   <button  id="play"><i class="fa fa-play" aria-hidden="true"></i></button>
+  	       <button  id="next"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
+  	   </div>
+
+       <!--- song duration part --->
+        <div class="duration">
+           <input type="range" min="0" max="100" value="0" id="duration_slider">
+           <button id="auto">Auto &nbsp;<i class="fa fa-circle-o-notch" aria-hidden="true"></i></button>
+           <label id="auto" for="fileInput">Select Folder &nbsp;<i class="fa fa-folder" aria-hidden="true"></i></label>
+           <input type="file" id="fileInput" accept=".mp3" webkitdirectory directory hidden>
+        </div>
+           
+  	</div>
+
+
+  </div>
+   
+  <!--- Add javascript file --->
+  <script src="script.js"></script>
+  <script>
+    const musicPlayer = new MusicPlayer();
+  </script>
+</body>
+</html>
