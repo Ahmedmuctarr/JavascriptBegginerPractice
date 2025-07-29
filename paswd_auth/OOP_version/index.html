@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <form>
+        <h1>Basic Form</h1>
+        <div class="inputs">
+            <label>New Password</label>
+            <input type="password" placeholder="New password" id="newPassword">
+        </div>
+        <div class="inputs">
+            <label>Confirm Password</label>
+            <input type="password" placeholder="Confirm password" id="confirmPassword">
+        </div>
+        <div class="fgtpswd">
+            <input type="checkbox" id="showPassword"><label for="showPassword">Show Password</label>
+        </div>
+        <div class="inputs">
+            <input type="submit" value="change password" id="submit">
+            <span id="error"></span>
+        </div>
+        <div class="loader">
+            <div class="load">
+                <span id="strength"></span>
+            </div>
+        </div>
+    </form>
+    <script src="passwordStrength.js"></script>
+    <script>
+        const newpass = document.getElementById('newPassword');
+        const confirmpass = document.getElementById('confirmPassword');
+        const strengthDiv = document.querySelector('.load');
+        const errorDiv = document.getElementById('error');
+        
+    
+        new PasswordValidator(newpass, confirmpass, strengthDiv, errorDiv);
+      </script>
+</body>
+</html>
