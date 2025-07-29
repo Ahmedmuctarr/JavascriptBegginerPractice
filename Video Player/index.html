@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Video player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link id="favicon" rel="icon" type="icon" href="img/img2.jpg">
+</head>
+
+<body>
+
+  <div class="main">
+  	<p id="logo"><i class="fa fa-file-video-o" aria-hidden="true"></i>Ahmed Video Player</p>
+    
+        <!-- show_Video_number -->
+        <div class="show_video_no">
+          <p id="present">1</p>
+          <p>/</p>
+          <p id="total">5</p>
+        </div>
+
+
+    <!--- left part --->
+     <div class="left">
+
+      <!--- song img --->
+      <!--VIDEO-->
+      <!--- Video duration part --->
+      <div class="duration">
+        <input type="range" min="0" max="100" value="0" id="duration_slider">
+        <button id="auto">Auto &nbsp;<i class="fa fa-circle-o-notch" aria-hidden="true"></i></button>
+        <button id="fullscreenButton"><i class="fa fa-expand" aria-hidden="true"></i></button>
+        <input type="file" id="fileInput" accept=".mp4" webkitdirectory directory hidden>
+     </div>
+         
+     </div>
+ 
+     <!--- right part --->
+  	 <div class="right">
+       <!--- song title & artist name --->
+       <div class="song_detail">
+           <p id="title">title.mp4</p>
+       </div>
+
+      <!--- middle part --->
+  	 	<div class="middle">
+  	       <button id="pre"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
+      	   <button id="play"><i class="fa fa-play" aria-hidden="true"></i></button>
+  	       <button id="next"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
+  	   </div>
+
+       <div class="volume">
+        <p id="volume_show">90</p>
+        <i class="fa fa-volume-up" aria-hidden="true" onclick="mute_sound()" id="volume_icon"></i>
+        <input type="range" min="0" max="100" value="90" onchange="volume_change()" id="volume"> 
+        <label id="auto" for="fileInput">Select Folder &nbsp;<i class="fa fa-folder" aria-hidden="true"></i></label> 
+     </div>
+
+           
+  	</div>
+
+
+  </div>
+   
+  <!--- Add javascript file --->
+  <script src="script.js"></script>
+  <script>
+    const videoPlayer = new VideoPlayer();
+    const durationElement = document.querySelector('.duration');
+    document.getElementById('fullscreenButton').addEventListener('click', () => {
+      const videoContainer = document.querySelector('.left'); // Your video container (or another element you want to make fullscreen)
+      const videoElement = videoContainer.querySelector('video'); // Get the video element itself
+
+      // Check if the browser is already in fullscreen mode
+      if (!document.fullscreenElement) {
+        // If not, request fullscreen for the video container
+        if (videoContainer.requestFullscreen) {
+          videoContainer.requestFullscreen();
+        } else if (videoContainer.mozRequestFullScreen) { // Firefox
+          videoContainer.mozRequestFullScreen();
+        } else if (videoContainer.webkitRequestFullscreen) { // Chrome, Safari, Opera
+          videoContainer.webkitRequestFullscreen();
+        } else if (videoContainer.msRequestFullscreen) { // IE/Edge
+          videoContainer.msRequestFullscreen();
+        }
+
+        // Change icon to indicate "exit fullscreen"
+        document.querySelector('#fullscreenButton i').classList.remove('fa-expand');
+        document.querySelector('#fullscreenButton i').classList.add('fa-compress');
+      } else {
+        // If in fullscreen mode, exit fullscreen
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { // Firefox
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { // Chrome, Safari, Opera
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { // IE/Edge
+          document.msExitFullscreen();
+        }
+
+        // Change icon back to "expand" for fullscreen
+        document.querySelector('#fullscreenButton i').classList.remove('fa-compress');
+        document.querySelector('#fullscreenButton i').classList.add('fa-expand');
+      }
+    });
+
+    // Adjust the video styling on fullscreen toggle (maintains previous styles)
+    document.addEventListener('fullscreenchange', () => {
+      const videoElement = document.querySelector('.left video');
+      if (document.fullscreenElement) {
+        // Video is in fullscreen mode
+        videoElement.style.position = 'absolute';
+        videoElement.style.top = '0';
+        videoElement.style.left = '0';
+        videoElement.style.width = '100vw';
+        videoElement.style.height = '100vh';
+        videoElement.style.borderRadius = '0';
+        videoElement.style.boxShadow = 'none';
+        // Duration bottom
+        durationElement.style.position = 'absolute';
+        durationElement.style.bottom = '10px';
+        durationElement.style.left = '50%'; // Center it horizontally
+        durationElement.style.transform = 'translateX(-50%)';
+      } else {
+        // Video is not in fullscreen
+        videoElement.style.position = 'static';
+        videoElement.style.width = '80%';
+        videoElement.style.height = '300px';
+        videoElement.style.borderRadius = '15px';
+        videoElement.style.boxShadow = 'inset 5px 5px 5px rgba(0,0,0,0.2), inset -5px -5px 15px rgba(255,255,255,0.1), 5px 5px 15px rgba(0,0,0,0.3), -5px -5px 15px rgba(255,255,255,0.1)';
+      }
+    });
+  </script>
+</body>
+</html>
