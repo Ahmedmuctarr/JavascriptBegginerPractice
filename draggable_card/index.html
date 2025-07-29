@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draggable</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header>Header</header>
+        <div class="mainWindow">
+            <div class="card">
+                This is a card
+            </div>
+        </div>
+    </div>
+    <script>
+        let wrapper = document.querySelector('.wrapper');
+        let header = wrapper.querySelector('header');
+        //remember to use {movementX and movementY};
+        function ondrag({movementX,movementY}){
+            let getStyle = getComputedStyle(wrapper);
+            let top = parseInt(getStyle.top);
+            let left = parseInt(getStyle.left);
+            wrapper.style.top = `${top+movementY}px`;
+            wrapper.style.left = `${left+movementX}px`;
+        }
+        header.addEventListener('mousedown',()=>{
+            header.classList.add("active");
+            header.addEventListener('mousemove',ondrag)
+        });
+        document.addEventListener('mouseup',()=>{
+            header.classList.remove("active");
+            header.removeEventListener('mousemove',ondrag);
+        });
+        
+    </script>
+</body>
+</html>
