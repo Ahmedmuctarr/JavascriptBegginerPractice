@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="syle.css">
+
+</head>
+<body>
+    <div class="frame">
+        <div class="TimerDisplay">Ahmed Timer</div>
+        <div id="TimerDisplay">00:00:00</div>
+        <div class="buttons">
+            <button id="togglebtn"><i id="icon" class='bx bx-play-circle'></i></button>
+            <button onclick="resetTimer()"><i class='bx bx-reset' ></i></button>
+            <button onclick="addLaps()"><i class='bx bxs-download'></i></button>
+        </div>
+       <!-- <label id="laps"></label>-->
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

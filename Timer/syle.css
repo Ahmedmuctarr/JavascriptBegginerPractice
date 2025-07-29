@@ -1,0 +1,29 @@
+.frame{
+    margin: 5% auto;
+    width: 25em;
+    height: 20em;
+    background-color: blue;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#TimerDisplay, .TimerDisplay{
+    font-size: 25px;
+    letter-spacing: 5px;
+    color: #fff;
+}
+.buttons button{
+    background: none;
+    border: none;
+    color: orange;
+    font-size: 35px;
+    cursor: pointer;
+}
+label{
+    font-size: 25px;
+    letter-spacing: 5px;
+    color: blue;
+    background-color: aquamarine;
+    margin: 1px;
+}
